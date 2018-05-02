@@ -1,6 +1,17 @@
 h1 {
   color: blue;
+  text-align: center;
+  font-size: 75px;
+  font-style: oblique;
+  font-weight: bold;
+  text-decoration: underline;
+  
 }
 body{
-    background-color: lightblue;
+    background-image: url("../images/nyimg.jpg");
+    background-size: 100%;
+}
+
+#window{
+  
 }
