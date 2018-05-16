@@ -18,18 +18,27 @@ function callLocationByName(input1, input2) {
         method: "GET",
         success: function(response) {
             /* temperature */
-            console.log(convertKelvin(response.list[0].main.temp));
-            makeForecast(convertKelvin(response.list[0].main.temp));
+            console.log();
+            $("#window").html("");
+            $("#window").append("<p>Date: " + response.list[12].dt_txt + "</p>");
+            $("#window").append("<p> The weather will be \"" + response.list[12].weather[0].main + "\"</p>");
+            $("#window").append("<p> It is described as \"" + response.list[12].weather[0].description + "\"</p>");
+            makeForecast(convertKelvin(response.list[12].main.temp));
+        },
+        error: function(a,b,c) {
+            $("#window").html("<p>Error 404. Location not found.</p>");
+            
         },
     });
 }
+
 
 function convertKelvin(k) {
     return Math.floor((k * (9 / 5)) - 459.67);
 }
 
 function makeForecast(weatherInfo) {
-    $("#window").html("<p>The temperature will be " + String(weatherInfo) + " degrees Fahrenheit.</p>");
+    $("#window").append("<p>The temperature will be " + String(weatherInfo) + " degrees Fahrenheit.</p>");
 }
 
 
@@ -38,6 +47,7 @@ $(document).ready(function() {
     $("#submit").click(function() {
         var one = $("#input1").val();
         var two = $("#input2").val();
-        callLocationByName(one,two);
+        callLocationByName(one, two);
     });
 });
+
